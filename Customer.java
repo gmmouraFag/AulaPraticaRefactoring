@@ -18,33 +18,26 @@ public class Customer {
     }
 
     public String statement() {
+        double totalAmount = 0;
+        int frequentRenterPoints = 0;
         Enumeration rentals = _rentals.elements();
         String result = "Rental Record for " + getName() + "\n";
-
         while (rentals.hasMoreElements()) {
             Rental each = (Rental) rentals.nextElement();
-            result += "\t" + each.getMovie().getTitle() + "\t" + each.getCharge() + "\n";
+    
+            // show figures for this rental
+            result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(each.getCharge()) + "\n";
+            totalAmount += each.getCharge();
+            frequentRenterPoints += each.getFrequentRenterPoints();
         }
-
-        result += "Amount owed is " + getTotalCharge() + "\n";
-        result += "You earned " + getTotalFrequentRenterPoints() + " frequent renter points";
+    
+        // add footer lines
+        result += "Amount owed is " + String.valueOf(totalAmount) + "\n";
+        result += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points";
         return result;
     }
 
-    public String htmlStatement() {
-        Enumeration rentals = _rentals.elements();
-        String result = "<H1>Rentals for <EM>" + getName() + "</EM></H1><P>\n";
-
-        while (rentals.hasMoreElements()) {
-            Rental each = (Rental) rentals.nextElement();
-            result += each.getMovie().getTitle() + ": " + each.getCharge() + "<BR>\n";
-        }
-
-        result += "<P>You owe <EM>" + getTotalCharge() + "</EM><P>\n";
-        result += "On this rental you earned <EM>" + getTotalFrequentRenterPoints() + "</EM> frequent renter points<P>";
-        return result;
-    }
-
+    // Método para calcular o total charge
     private double getTotalCharge() {
         double result = 0;
         Enumeration rentals = _rentals.elements();
@@ -55,6 +48,7 @@ public class Customer {
         return result;
     }
 
+    // Método para calcular o total de pontos de frequent renter
     private int getTotalFrequentRenterPoints() {
         int result = 0;
         Enumeration rentals = _rentals.elements();
