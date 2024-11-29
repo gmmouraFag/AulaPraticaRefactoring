@@ -5,11 +5,11 @@ public class HtmlStatement extends Statement {
     @Override
     protected String body(Customer aCustomer) {
         Enumeration rentals = aCustomer.getRentals();
-        String result = "";
+        StringBuilder result = new StringBuilder();
         while (rentals.hasMoreElements()) {
             Rental each = (Rental) rentals.nextElement();
-            result += each.getMovie().getTitle() + ": " + String.valueOf(each.getCharge()) + "<BR>\n";
+            result.append(each.getMovie().getTitle() + ": " + String.valueOf(each.getCharge()) + "<BR>\n");
         }
-        return result;
+        return result.toString();
     }
 }

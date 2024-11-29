@@ -5,11 +5,11 @@ public class TextStatement extends Statement {
     @Override
     protected String body(Customer aCustomer) {
         Enumeration rentals = aCustomer.getRentals();
-        String result = "";
+        StringBuilder result = new StringBuilder();
         while (rentals.hasMoreElements()) {
             Rental each = (Rental) rentals.nextElement();
-            result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(each.getCharge()) + "\n";
+            result.append("\t" + each.getMovie().getTitle() + "\t" + String.valueOf(each.getCharge()) + "\n");
         }
-        return result;
+        return result.toString();
     }
 }
