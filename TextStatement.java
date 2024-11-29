@@ -12,10 +12,4 @@ public class TextStatement extends Statement {
         }
         return result;
     }
-
-    @Override
-    protected String htmlBody(Customer aCustomer) {
-        // No need for html body in TextStatement, as it's a text format
-        return "";
-    }
 }

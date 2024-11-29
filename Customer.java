@@ -41,11 +41,12 @@ public class Customer {
         return result;
     }
 
+    // Chama o método value das subclasses
     public String statement() {
-        return new TextStatement().statement(this);
+        return new TextStatement().value(this);
     }
 
     public String htmlStatement() {
-        return new HtmlStatement().htmlStatement(this);
+        return new HtmlStatement().value(this);
     }
 }
