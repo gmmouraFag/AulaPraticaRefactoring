@@ -10,7 +10,5 @@ public class ChildrensPrice extends Price {
         return result;
     }
 
-    public int getFrequentRenterPoints(int daysRented) {
-        return 1; // Para filmes infantis, os pontos são sempre 1
-    }
+    // Usa o comportamento genérico herdado de Price
 }

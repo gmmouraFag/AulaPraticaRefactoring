@@ -10,7 +10,5 @@ public class RegularPrice extends Price {
         return result;
     }
 
-    public int getFrequentRenterPoints(int daysRented) {
-        return 1; // Filmes regulares ganham sempre 1 ponto
-    }
+    // Usa o comportamento genérico herdado de Price
 }
