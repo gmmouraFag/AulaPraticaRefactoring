@@ -5,25 +5,37 @@ public class Movie {
     public static final int NEW_RELEASE = 1;
 
     private String _title;
-    private int _priceCode;
+    private Price _price;  // Substitui o campo _priceCode
 
     public Movie(String title, int priceCode) {
         _title = title;
-        _priceCode = priceCode;
-    }
-
-    public int getPriceCode() {
-        return _priceCode;
-    }
-
-    public void setPriceCode(int arg) {
-        _priceCode = arg;
+        setPriceCode(priceCode);  // Chama o método setPriceCode para inicializar _price
     }
 
     public String getTitle() {
         return _title;
     }
 
+    public int getPriceCode() {
+        return _price.getPriceCode();  // Delegação para a classe Price
+    }
+
+    public void setPriceCode(int arg) {
+        switch (arg) {
+            case REGULAR:
+                _price = new RegularPrice();
+                break;
+            case CHILDRENS:
+                _price = new ChildrensPrice();
+                break;
+            case NEW_RELEASE:
+                _price = new NewReleasePrice();
+                break;
+            default:
+                throw new IllegalArgumentException("Incorrect Price Code");
+        }
+    }
+    
     public double getCharge(int daysRented) {
         double result = 0;
         switch (getPriceCode()) {
