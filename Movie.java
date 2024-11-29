@@ -3,11 +3,11 @@ public class Movie {
     public static final int CHILDRENS = 1;
     public static final int NEW_RELEASE = 2;
 
-    private Price _price;
     private String _title;
+    private Price _price;
 
-    public Movie(String name, int priceCode) {
-        _title = name;
+    public Movie(String title, int priceCode) {
+        _title = title;
         setPriceCode(priceCode);
     }
 
@@ -21,13 +21,13 @@ public class Movie {
 
     public void setPriceCode(int arg) {
         switch (arg) {
-            case Movie.REGULAR:
+            case REGULAR:
                 _price = new RegularPrice();
                 break;
-            case Movie.CHILDRENS:
+            case CHILDRENS:
                 _price = new ChildrensPrice();
                 break;
-            case Movie.NEW_RELEASE:
+            case NEW_RELEASE:
                 _price = new NewReleasePrice();
                 break;
             default:
@@ -39,15 +39,7 @@ public class Movie {
         return _price.getCharge(daysRented);
     }
 
-    // Método getFrequentRenterPoints que depende do tipo de filme e dos dias alugados
     public int getFrequentRenterPoints(int daysRented) {
-        int points = 1;  // pontos padrão
-
-        // Se for um lançamento novo e alugado por mais de um dia, dá um bônus de pontos
-        if (getPriceCode() == Movie.NEW_RELEASE && daysRented > 1) {
-            points++;
-        }
-
-        return points;
+        return _price.getFrequentRenterPoints(daysRented);
     }
 }

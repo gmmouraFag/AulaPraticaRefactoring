@@ -4,10 +4,13 @@ public class ChildrensPrice extends Price {
     }
 
     public double getCharge(int daysRented) {
-        double charge = 1.5;
-        if (daysRented > 3) {
-            charge += (daysRented - 3) * 1.5;
-        }
-        return charge;
+        double result = 1.5;
+        if (daysRented > 3)
+            result += (daysRented - 3) * 1.5;
+        return result;
+    }
+
+    public int getFrequentRenterPoints(int daysRented) {
+        return 1; // Para filmes infantis, os pontos são sempre 1
     }
 }

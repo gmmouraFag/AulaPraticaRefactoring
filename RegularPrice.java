@@ -4,10 +4,13 @@ public class RegularPrice extends Price {
     }
 
     public double getCharge(int daysRented) {
-        double charge = 2;
-        if (daysRented > 2) {
-            charge += (daysRented - 2) * 1.5;
-        }
-        return charge;
+        double result = 2;
+        if (daysRented > 2)
+            result += (daysRented - 2) * 1.5;
+        return result;
+    }
+
+    public int getFrequentRenterPoints(int daysRented) {
+        return 1; // Filmes regulares ganham sempre 1 ponto
     }
 }
